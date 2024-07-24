@@ -4,37 +4,36 @@ using UnityEngine.SceneManagement;
 public class OperationSelectionManager : MonoBehaviour
 {
     public static string selectedOperation;
+    public static string difficultyLevel;
 
     public void SelectAddition()
     {
-        Debug.Log("Button clicked!");
         selectedOperation = "Addition";
-        SceneManager.LoadScene("GameScene");
-
+        SceneManager.LoadScene("DifficultySelectionScene");
     }
 
     public void SelectSubtraction()
     {
-        Debug.Log("Button clicked!");
         selectedOperation = "Subtraction";
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("DifficultySelectionScene");
     }
 
     public void SelectMultiplication()
     {
-        Debug.Log("Button clicked!");
         selectedOperation = "Multiplication";
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("DifficultySelectionScene");
     }
 
     public void SelectDivision()
     {
-        Debug.Log("Button clicked!");
         selectedOperation = "Division";
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("DifficultySelectionScene");
     }
+    
     public void BackToMenu()
     {
         SceneManager.LoadScene("StartupScene");
     }
 }
+
+

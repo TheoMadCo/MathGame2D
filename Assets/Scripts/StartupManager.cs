@@ -12,8 +12,4 @@ public class StartupManager : MonoBehaviour
     {
         Application.Quit();
     }
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene("StartupScene");
-    }
 }

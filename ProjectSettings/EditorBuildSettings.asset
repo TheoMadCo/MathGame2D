@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SelectionScene.unity
     guid: 58cca6dd703aec3469760c0803e8a778
+  - enabled: 1
+    path: Assets/Scenes/DifficultySelectionScene.unity
+    guid: ef4b0215d14f7ee4695f5fb117cf2ccb
   m_configObjects: {}

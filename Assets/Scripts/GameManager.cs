@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI resultText;
     public Button retryButton;
     public Button backButton;
+    public TextMeshProUGUI DifficultyInfo;
 
     private int correctAnswer;
     private float score;
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
         roundCount = 0;
         resultPanel.SetActive(false);
         GenerateQuestion();
+        DisplayDifficulty();
     }
 
     void GenerateQuestion()
@@ -38,31 +40,34 @@ public class GameManager : MonoBehaviour
 
         int a, b;
         string operation = OperationSelectionManager.selectedOperation;
+        string difficulty = OperationSelectionManager.difficultyLevel;
         List<int> answers = new List<int>();
+
+        int range = difficulty == "Easy" ? 10 : difficulty == "Medium" ? 20 : 50;
 
         switch (operation)
         {
             case "Addition":
-                a = Random.Range(1, 11);
-                b = Random.Range(1, 11);
+                a = Random.Range(1, range + 1);
+                b = Random.Range(1, range + 1);
                 correctAnswer = a + b;
                 questionText.text = $"{a} + {b} = ?";
                 break;
             case "Subtraction":
-                a = Random.Range(1, 11);
+                a = Random.Range(1, range + 1);
                 b = Random.Range(1, a + 1); // Ensure b <= a
                 correctAnswer = a - b;
                 questionText.text = $"{a} - {b} = ?";
                 break;
             case "Multiplication":
-                a = Random.Range(1, 11);
-                b = Random.Range(1, 11);
+                a = Random.Range(1, range + 1);
+                b = Random.Range(1, range + 1);
                 correctAnswer = a * b;
                 questionText.text = $"{a} * {b} = ?";
                 break;
             case "Division":
-                b = Random.Range(1, 11);
-                correctAnswer = Random.Range(1, 11);
+                b = Random.Range(1, range + 1);
+                correctAnswer = Random.Range(1, range + 1);
                 a = b * correctAnswer; // Ensure a is divisible by b
                 questionText.text = $"{a} / {b} = ?";
                 break;
@@ -72,7 +77,7 @@ public class GameManager : MonoBehaviour
 
         while (answers.Count < 3)
         {
-            int wrongAnswer = Random.Range(1, 21);
+            int wrongAnswer = Random.Range(1, range * 2);
             if (!answers.Contains(wrongAnswer))
             {
                 answers.Add(wrongAnswer);
@@ -164,5 +169,15 @@ public class GameManager : MonoBehaviour
     void BackToSelection()
     {
         SceneManager.LoadScene("SelectionScene");
+    }
+
+    string difficultyLevel()
+    {
+        return OperationSelectionManager.difficultyLevel;
+    }
+
+    void DisplayDifficulty()
+    {
+        DifficultyInfo.text = DifficultyInfo.text + difficultyLevel();
     }
 }
