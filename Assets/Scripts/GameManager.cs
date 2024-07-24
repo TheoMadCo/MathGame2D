@@ -107,6 +107,26 @@ public class GameManager : MonoBehaviour
         GenerateQuestion();
     }
 
+    string GetScoreText()
+    {
+        if (score < 3)
+        {
+            return "Next time will go better!";
+        }
+        else if (score < 6)
+        {
+            return "Nice work";
+        }
+        else if (score < 8)
+        {
+            return "Good job!";
+        }
+        else
+        {
+            return "Excellent";
+        }
+    }
+
     void ResetButtons()
     {
         foreach (Button button in answerButtons)
@@ -130,7 +150,8 @@ public class GameManager : MonoBehaviour
     void ShowResult()
     {
         resultPanel.SetActive(true);
-        resultText.text = $"Game Over!\nYour Score: {score}";
+        string motivationalText = GetScoreText();
+        resultText.text = $"{score} out of 10\n" + motivationalText;
         retryButton.onClick.AddListener(RetryGame);
         backButton.onClick.AddListener(BackToSelection);
     }
