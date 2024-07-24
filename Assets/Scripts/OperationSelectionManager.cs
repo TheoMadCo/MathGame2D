@@ -33,4 +33,8 @@ public class OperationSelectionManager : MonoBehaviour
         selectedOperation = "Division";
         SceneManager.LoadScene("GameScene");
     }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("StartupScene");
+    }
 }
